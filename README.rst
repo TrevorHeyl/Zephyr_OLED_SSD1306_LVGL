@@ -5,14 +5,14 @@ LCD I2C example in Zephyr
 Overview
 ********
 
-This sample shows how to interface an I2C LCD display, the type tha have an adapter board with a I2C GPIO expander from NXO , the PCF8574T.  The exmaple has a submodule dpeemdency on the lcd_i2c_criver found here https://github.com/TrevorHeyl/Zephyr_ESP32_LCD_I2C/edit/master/README.rst
+This sample shows how to interface an I2C OLD display and using LVGL in Zephyr.
 
 Requirements
 ************
 
 #. ESP32 Devkit C
-#. lcd_i2c_driver submodule (will be automatically pulled in)
 #. Zephyr OS and West installed
+#. SSD13o6 I2C based OLED display 128x64
 
 Building and Running
 ********************
