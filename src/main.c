@@ -23,35 +23,38 @@ void lv_example_style_11(void)
     lv_style_set_bg_color(&style_base, lv_palette_main(LV_PALETTE_GREEN));
     lv_style_set_border_color(&style_base, lv_palette_darken(LV_PALETTE_GREEN, 3));
     lv_style_set_border_width(&style_base, 2);
-    lv_style_set_radius(&style_base, 10);
-    lv_style_set_shadow_width(&style_base, 10);
-    lv_style_set_shadow_ofs_y(&style_base, 5);
+    lv_style_set_radius(&style_base, 3);
+    lv_style_set_shadow_width(&style_base, 3);
+    lv_style_set_shadow_ofs_y(&style_base, 3);
     lv_style_set_shadow_opa(&style_base, LV_OPA_50);
     lv_style_set_text_color(&style_base, lv_color_white());
-    lv_style_set_width(&style_base, 100);
-    lv_style_set_height(&style_base, LV_SIZE_CONTENT);
+    lv_style_set_width(&style_base, 64);
+    lv_style_set_height(&style_base, 28);
 
     /*Set only the properties that should be different*/
     static lv_style_t style_warning;
     lv_style_init(&style_warning);
-    lv_style_set_bg_color(&style_warning, lv_palette_main(LV_PALETTE_RED));
-    lv_style_set_border_color(&style_warning, lv_palette_darken(LV_PALETTE_RED, 3));
-    lv_style_set_text_color(&style_warning, lv_palette_darken(LV_PALETTE_LIGHT_BLUE, 4));
+    //lv_style_set_bg_color(&style_warning, lv_palette_main(LV_PALETTE_RED));
+    //lv_style_set_border_color(&style_warning, lv_palette_darken(LV_PALETTE_RED, 3));
+    lv_style_set_text_color(&style_warning, lv_color_black());
+
+    lv_obj_t * obj_warning = lv_obj_create(lv_scr_act());
+    /*Create another object with the base style and earnings style too*/
+    lv_obj_add_style(obj_warning, &style_base, 0);
+    lv_obj_add_style(obj_warning, &style_warning, 0);
 
     /*Create an object with the base style only*/
     lv_obj_t * obj_base = lv_obj_create(lv_scr_act());
     lv_obj_add_style(obj_base, &style_base, 0);
-    lv_obj_align(obj_base, LV_ALIGN_LEFT_MID, 20, 0);
+    lv_obj_align(obj_base, LV_ALIGN_LEFT_MID, 0, 0);
+    lv_obj_add_style(obj_base, &style_base, 0);
+    lv_obj_add_style(obj_base, &style_warning, 0);
 
     lv_obj_t * label = lv_label_create(obj_base);
     lv_label_set_text(label, "Start");
     lv_obj_center(label);
 
-    /*Create another object with the base style and earnings style too*/
-    lv_obj_t * obj_warning = lv_obj_create(lv_scr_act());
-    lv_obj_add_style(obj_warning, &style_base, 0);
-    lv_obj_add_style(obj_warning, &style_warning, 0);
-    lv_obj_align(obj_warning, LV_ALIGN_RIGHT_MID, -20, 0);
+    lv_obj_align(obj_warning, LV_ALIGN_RIGHT_MID, 0, 0);
 
     label = lv_label_create(obj_warning);
     lv_label_set_text(label, "Stop");
@@ -136,39 +139,33 @@ void main(void)
 		hello_world_label = lv_label_create(lv_scr_act());
 	}
 
-	printk("boot1\n");
+	printk("Starting OLED SSD1306+LVGL DEMO\n");
+
 	lv_label_set_text(hello_world_label, "Hello world!");
 	lv_obj_align(hello_world_label, LV_ALIGN_CENTER, 0, 0);
 
-	printk("boot2\n");
 
     lv_style_init(&style);
-	lv_style_set_bg_color(&style, lv_palette_main(LV_PALETTE_RED));
-	lv_style_set_text_color(&style, lv_palette_main(LV_PALETTE_BLUE));
 	lv_style_set_text_decor(&style, LV_TEXT_DECOR_UNDERLINE);
 
-	printk("boot3\n");
 
 
 	count_label = lv_label_create(lv_scr_act());
 	lv_obj_add_style(count_label, &style, 0);
-	lv_obj_align(count_label, LV_ALIGN_BOTTOM_MID, 0, -10);
+	lv_obj_align(count_label, LV_ALIGN_BOTTOM_MID, 0, 0);
 
 	lv_example_style_11();
 	//lv_example_style_2();
-	printk("boot4\n");
 
 	lv_task_handler();
-	printk("boot4b\n");
 	display_blanking_off(display_dev);
-	printk("boot5\n");
 
 
 	while (1) {
 		if ((count % 100) == 0U) {
 			sprintf(count_str, "%d", count/100U);
 			lv_label_set_text(count_label, count_str);
-			printk("running\n");
+			printk("Count %d\n",count);
 		}
 		lv_task_handler();
 		k_sleep(K_MSEC(10));
