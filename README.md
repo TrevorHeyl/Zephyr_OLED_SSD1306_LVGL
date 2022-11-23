@@ -5,7 +5,7 @@
 ## Overview
 
 
-This sample shows how to interface an I2C Monochrome OLED display and using LVGL in Zephyr. these are the generic cheap display types
+This sample shows how to interface an I2C Monochrome OLED display and using LVGL in Zephyr. These are the generic cheap display types
 
 ## Requirements
 
