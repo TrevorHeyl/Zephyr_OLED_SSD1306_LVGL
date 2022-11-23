@@ -1,21 +1,30 @@
 
-LCD I2C example in Zephyr
-######
+# LCD I2C example in Zephyr
 
-Overview
-********
 
-This sample shows how to interface an I2C OLD display and using LVGL in Zephyr.
+## Overview
 
-Requirements
-************
 
-#. ESP32 Devkit C
-#. Zephyr OS and West installed
-#. SSD13o6 I2C based OLED display 128x64
+This sample shows how to interface an I2C Monochrome OLED display and using LVGL in Zephyr. these are the generic cheap display types
 
-Building and Running
-********************
+## Requirements
+
+
+1. ESP32 Devkit C
+2. Zephyr OS and West installed
+3. SSD1306 I2C based OLED display 128x64
+
+## Wiring and connections
+
+DISPLAY    ESP32  
+VSS  --  GND  
+VDD  --  3V3  
+SCL  --  GPIO22  
+SDA  --  GPIO21   
+
+
+
+## Building and Running
 Initially and everytine you start a shell please run:
 <br>
 $>source ~/zephyrproject/zephyr/zephyr-env.sh
